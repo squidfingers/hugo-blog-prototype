@@ -1,4 +1,4 @@
----
+languageCode: "en-us"
 title: "Blog prototype"
 
 params:
@@ -43,4 +43,3 @@ outputs:
     - HTML
   section:
     - HTML
-...
