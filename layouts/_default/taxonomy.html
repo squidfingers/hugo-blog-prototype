@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <h2>
+    {{ .Data.Plural | humanize }}
+  </h2>
+  <ul>
+    {{ range .Data.Terms.ByCount }}
+      <li>
+        <a href="{{ .Page.RelPermalink }}">{{ .Page.Name }}</a> ({{ .Count }})
+      </li>
+    {{ end }}
+  </ul>
+{{ end }}

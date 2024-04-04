@@ -1,0 +1,46 @@
+---
+title: "Blog prototype"
+
+params:
+  blog:
+    thumbnail: "thumbnail.*" # Glob pattern for blog post thumbnail
+    hero: "hero.*" # Glob pattern for blog post hero image
+
+permalinks:
+  page:
+    blog: /blog/:year/:month/:day/:slug/ # URL structure for blog post
+
+# Only relate content using keywords and tags
+related:
+  includeNewer: false
+  indices:
+  - applyFilter: false
+    cardinalityThreshold: 0
+    name: keywords
+    pattern: ""
+    toLower: false
+    type: basic
+    weight: 100
+  - applyFilter: false
+    cardinalityThreshold: 0
+    name: tags
+    pattern: ""
+    toLower: false
+    type: basic
+    weight: 80
+  threshold: 80
+  toLower: false
+
+# Turn off categories
+taxonomies:
+  tag: tags
+
+# Turn off RSS by default; an individual section can choose to enable it
+outputs:
+  page:
+    - HTML
+  home:
+    - HTML
+  section:
+    - HTML
+...

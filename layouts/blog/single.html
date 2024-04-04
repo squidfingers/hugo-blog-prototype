@@ -1,0 +1,38 @@
+{{ define "main" }}
+  {{/* Blog post */}}
+  <article class="blog-post">
+    <div class="blog-post__body">
+      {{ with .Resources.GetMatch site.Params.blog.hero }}
+        <div class="blog-post__hero">
+          <img src="{{ .RelPermalink }}" alt="{{ .Title }}">
+        </div>
+      {{ end }}
+      <h2>{{ .Title }}</h2>
+      {{ partial "blog-post__meta.html" . }}
+      <div class="blog-post__content">
+        {{ .Content }}
+      </div>
+    </div>
+  </article>
+  {{/* Related blog posts */}}
+  {{ with site.RegularPages.Related . | first 3 }}
+    <div class="related-blog-posts">
+      <h3>Related</h3>
+      {{ range . }}
+        <article class="blog-post">
+          {{ with .Resources.GetMatch site.Params.blog.thumbnail }}
+            <div class="blog-post__media">
+              <img src="{{ .RelPermalink }}" alt="{{ .Title }}">
+            </div>
+          {{ end }}
+          <div class="blog-post__body">
+            <h4>
+              <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+            </h4>
+            {{ partial "blog-post__meta.html" . }}
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  {{ end }}
+{{ end }}

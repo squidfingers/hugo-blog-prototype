@@ -1,0 +1,8 @@
+travis:
+  avatar: travis.jpg
+  firstName: Travis
+  lastName: Beckham
+john:
+  avatar: john.jpg # Test missing image
+  firstName: John
+  lastName: Doe

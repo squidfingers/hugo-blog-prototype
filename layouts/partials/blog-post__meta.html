@@ -1,0 +1,23 @@
+<div class="blog-post__meta">
+  <p>
+    {{ with .Params.author }}
+      {{ $author := index site.Data.authors . }}
+      {{ with $author }}
+        {{ with resources.Get (printf "images/authors/%s" .avatar) }}
+          <img src="{{ .RelPermalink }}" alt="{{ .Title }}">
+        {{ end }}
+        {{ .firstName }} {{ .lastName }} •
+      {{ end }}
+    {{ end }}
+    {{ .Date.Format "Jan 2, 2006" }} • {{ .ReadingTime }} min read
+  </p>
+  {{ with .GetTerms "tags" }}
+    <ul class="tag-list">
+      {{ range . }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Name }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+</div>

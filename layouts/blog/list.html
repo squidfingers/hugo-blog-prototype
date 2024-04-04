@@ -1,0 +1,65 @@
+{{ define "main" }}
+  {{ $page := . }}
+  {{ $paginator := .Paginator 3 }}
+  {{/* RSS feed */}}
+  {{ with .OutputFormats.Get "rss" }}
+    <p>
+      <a href="{{ .Permalink }}">RSS</a>
+    </p>
+  {{ end }}
+  {{/* Featured blog posts */}}
+  {{ with .Params.featured }}
+    {{ if eq $paginator.PageNumber 1 }}
+      <div class="featured-blog-posts">
+        <h3>Featured</h3>
+        {{ range . }}
+          {{ with $page.GetPage . }}
+            {{ template "blog-post" . }}
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+  {{ end }}
+  {{/* Paginated blog posts */}}
+  {{ range $paginator.Pages }}
+    {{ template "blog-post" . }}
+  {{ end }}
+  {{/* Paginator navigation */}}
+  {{ with $paginator }}
+    {{ if gt .TotalPages 1 }}
+      <nav>
+        {{ if .HasPrev }}
+          <a href="{{ .Prev.URL }}">← Newer</a>
+        {{ end }}
+        {{ if .HasNext }}
+          <a href="{{ .Next.URL }}">Older →</a>
+        {{ end }}
+      </nav>
+    {{ end }}
+  {{ end }}
+  {{/* template "_internal/pagination.html" . */}}
+{{ end }}
+
+{{ define "blog-post" }}
+  <article class="blog-post">
+    {{ with .Resources.GetMatch site.Params.blog.thumbnail }}
+      <div class="blog-post__media">
+        <img src="{{ .RelPermalink }}" alt="{{ .Title }}">
+      </div>
+    {{ end }}
+    <div class="blog-post__body">
+      <h2>
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      </h2>
+      {{ partial "blog-post__meta.html" . }}
+      <div class="blog-post__content">
+        <p>
+          {{ .Summary }}
+        </p>
+      </div>
+      <p>
+        <a href="{{ .RelPermalink }}">Continue reading →</a>
+      </p>
+    </div>
+  </article>
+{{ end }}
