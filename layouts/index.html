@@ -1,3 +1,15 @@
 {{ define "main" }}
-{{ .Content }}
+  {{ with site.GetPage "/blog" }}
+    {{ $blog := . }}
+    {{ with .Params.featured }}
+      <div class="featured-blog-posts">
+        <h3>Featured blog post{{ if gt (len .) 1 }}s{{ end }}</h3>
+        {{ range . }}
+          {{ with $blog.GetPage . }}
+            {{ .Render "blog-post-featured-summary" }}
+          {{ end }}
+        {{ end }}
+      </div>
+    {{ end }}
+  {{ end }}
 {{ end }}

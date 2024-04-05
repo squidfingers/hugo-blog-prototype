@@ -1,0 +1,13 @@
+<article class="blog-post">
+  {{ with .Resources.GetMatch site.Params.blog.thumbnail }}
+    <div class="blog-post__media">
+      <img src="{{ .RelPermalink }}" alt="{{ .Title }}">
+    </div>
+  {{ end }}
+  <div class="blog-post__body">
+    <h4>
+      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    </h4>
+    {{ .Render "blog-post-meta" }}
+  </div>
+</article>
