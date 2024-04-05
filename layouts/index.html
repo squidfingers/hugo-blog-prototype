@@ -6,7 +6,7 @@
         <h3>Featured blog post{{ if gt (len .) 1 }}s{{ end }}</h3>
         {{ range . }}
           {{ with $blog.GetPage . }}
-            {{ .Render "blog-post-featured-summary" }}
+            {{ .Render "_blog-post-featured-summary" }}
           {{ end }}
         {{ end }}
       </div>

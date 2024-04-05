@@ -6,7 +6,10 @@
       </div>
     {{ end }}
     <h2>{{ .LinkTitle }}</h2>
-    {{ .Render "blog-post-meta" }}
+    <div class="blog-post__meta">
+      {{ .Render "_blog-post-meta" }}
+      {{ partial "tags" . }}
+    </div>
     <div class="blog-post__content">
       <p>
         {{ .Summary }}

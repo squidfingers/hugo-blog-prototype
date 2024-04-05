@@ -5,9 +5,20 @@
     </div>
   {{ end }}
   <div class="blog-post__body">
-    <h4>
+    <h2>
       <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
-    </h4>
-    {{ .Render "blog-post-meta" }}
+    </h2>
+    <div class="blog-post__meta">
+      {{ .Render "_blog-post-meta" }}
+      {{ partial "tags" . }}
+    </div>
+    <div class="blog-post__content">
+      <p>
+        {{ .Summary }}
+      </p>
+    </div>
+    <p>
+      <a href="{{ .RelPermalink }}">Continue reading →</a>
+    </p>
   </div>
 </article>

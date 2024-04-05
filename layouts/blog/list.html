@@ -7,7 +7,7 @@
   {{ end }}
   {{/* Paginated blog posts */}}
   {{ range (.Paginator 3).Pages }}
-    {{ .Render "blog-post-summary" }}
+    {{ .Render "_blog-post-summary" }}
   {{ end }}
   {{/* Paginator navigation */}}
   {{ with .Paginator }}
