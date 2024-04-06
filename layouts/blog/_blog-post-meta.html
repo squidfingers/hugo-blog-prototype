@@ -1,8 +1,8 @@
 <p>
   {{ with .Params.author }}
-    {{ $author := index site.Data.authors . }}
+    {{ $author := index site.Data.blog.authors . }}
     {{ with $author }}
-      {{ with resources.Get (printf "images/authors/%s" .avatar) }}
+      {{ with resources.Get (printf "%s%s" site.Params.blog.authors .avatar) }}
         <img src="{{ .RelPermalink }}" alt="{{ .Title }}">
       {{ end }}
       {{ .firstName }} {{ .lastName }} •
