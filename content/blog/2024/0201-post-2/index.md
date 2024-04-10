@@ -16,6 +16,8 @@ This is blog post 2.
 
 This is an inline image...
 
-{{< blog-img image.webp >}}
+{{< img image.webp >}}
+This is the image **caption**
+{{< /img >}}
 
 And this is some more content.

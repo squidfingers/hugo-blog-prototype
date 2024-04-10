@@ -3,12 +3,17 @@
   {{ if eq .ResourceType "image" }}
     {{ $resource := . }}
     {{ if not (eq .MediaType.SubType "svg") }}
-      {{ if or (ge .Width $maxSize) (ge .Height $maxSize) }}
+      {{ if or (gt .Width $maxSize) (gt .Height $maxSize) }}
         {{ $resource = .Process (printf "fit %dx%d jpg q80 lanczos" $maxSize $maxSize) }}
       {{ end }}
     {{ end }}
-    <figure class="blog-post__image">
-      <img src="{{ $resource.RelPermalink }}" alt="{{ $resource.Name }}">
+    <figure>
+      <img src="{{ $resource.RelPermalink }}" alt="{{ path.BaseName $resource.Name | humanize }}">
+      {{ with $.Inner }}
+        <figcaption>
+          {{ . | markdownify }}
+        </figcaption>
+      {{ end }}
     </figure>
   {{ end }}
 {{ end }}
