@@ -1,0 +1,15 @@
+{{ $width := 200 }}
+{{ $height := 200 }}
+{{ with .Resources.GetMatch "thumbnail.*" }}
+  {{ if eq .ResourceType "image" }}
+    {{ $resource := . }}
+    {{ if not (eq .MediaType.SubType "svg") }}
+      {{ if or (ne .Width $width) (ne .Height $height) }}
+        {{ $resource = .Process (printf "fill %dx%d smart jpg q80 lanczos" $width $height) }}
+      {{ end }}
+    {{ end }}
+    <div class="blog-post__media">
+      <img src="{{ $resource.RelPermalink }}" alt="{{ $resource.Name }}">
+    </div>
+  {{ end }}
+{{ end }}

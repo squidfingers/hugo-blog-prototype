@@ -1,9 +1,5 @@
 <article class="blog-post">
-  {{ with .Resources.GetMatch site.Params.blog.thumbnail }}
-    <div class="blog-post__media">
-      <img src="{{ .RelPermalink }}" alt="{{ .Title }}">
-    </div>
-  {{ end }}
+  {{ .Render "_blog-post-thumbnail-image" }}
   <div class="blog-post__body">
     <h2>
       <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>

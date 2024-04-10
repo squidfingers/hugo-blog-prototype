@@ -1,12 +1,6 @@
 languageCode: "en-us"
 title: "Blog prototype"
 
-params:
-  blog:
-    authors: "images/authors/" # Directory in assets that contains the author avatars
-    thumbnail: "thumbnail.*" # Glob pattern for page resource thumbnail
-    hero: "hero.*" # Glob pattern for page resource hero image
-
 permalinks:
   page:
     blog: /blog/:year/:month/:day/:slug/ # URL structure for blog post

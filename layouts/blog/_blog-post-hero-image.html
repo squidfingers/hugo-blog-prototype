@@ -1,0 +1,15 @@
+{{ $width := 1600 }}
+{{ $height := 600 }}
+{{ with .Resources.GetMatch "hero.*" }}
+  {{ if eq .ResourceType "image" }}
+    {{ $resource := . }}
+    {{ if not (eq .MediaType.SubType "svg") }}
+      {{ if or (ne .Width $width) (ne .Height $height) }}
+        {{ $resource = .Process (printf "fill %dx%d smart jpg q80 lanczos" $width $height) }}
+      {{ end }}
+    {{ end }}
+    <div class="blog-post__hero">
+      <img src="{{ $resource.RelPermalink }}" alt="{{ $resource.Name }}">
+    </div>
+  {{ end }}
+{{ end }}

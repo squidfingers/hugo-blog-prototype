@@ -16,6 +16,6 @@ This is blog post 2.
 
 This is an inline image...
 
-![image](image.svg)
+{{< blog-img image.webp >}}
 
 And this is some more content.

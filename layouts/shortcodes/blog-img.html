@@ -1,0 +1,14 @@
+{{ $maxSize := 800 }}
+{{ with $.Page.Resources.Get (.Get 0) }}
+  {{ if eq .ResourceType "image" }}
+    {{ $resource := . }}
+    {{ if not (eq .MediaType.SubType "svg") }}
+      {{ if or (ge .Width $maxSize) (ge .Height $maxSize) }}
+        {{ $resource = .Process (printf "fit %dx%d jpg q80 lanczos" $maxSize $maxSize) }}
+      {{ end }}
+    {{ end }}
+    <figure class="blog-post__image">
+      <img src="{{ $resource.RelPermalink }}" alt="{{ $resource.Name }}">
+    </figure>
+  {{ end }}
+{{ end }}
