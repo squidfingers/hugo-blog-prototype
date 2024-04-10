@@ -5,7 +5,7 @@
     {{ $resource := . }}
     {{ if not (eq .MediaType.SubType "svg") }}
       {{ if or (ne .Width $width) (ne .Height $height) }}
-        {{ $resource = .Process (printf "fill %dx%d smart jpg q80 lanczos" $width $height) }}
+        {{ $resource = .Process (printf "fill %dx%d jpg q80 lanczos" $width $height) }}
       {{ end }}
     {{ end }}
     <div class="blog-post__media">
