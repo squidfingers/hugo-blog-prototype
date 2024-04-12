@@ -1,19 +1,15 @@
-{{ $width := 128 }}
-{{ $height := 128 }}
 {{ with .Params.author }}
   {{ $author := index site.Data.blog.authors . }}
-  {{ with $author }}
-    {{ with resources.Get (printf "%s%s" "authors/" .avatar) }}
-      {{ if eq .ResourceType "image" }}
-        {{ $resource := . }}
-        {{ if not (eq .MediaType.SubType "svg") }}
-          {{ if or (ne .Width $width) (ne .Height $height) }}
-            {{ $resource = .Process (printf "fill %dx%d jpg q80 lanczos" $width $height) }}
-          {{ end }}
-        {{ end }}
-        <img src="{{ $resource.RelPermalink }}" alt="{{ $resource.Name }}">
-      {{ end }}
+  {{ if $author }}
+    {{ with partial "process-image" (dict
+      "res" resources
+      "pattern" (printf "%s%s" "authors/" $author.avatar)
+      "width" 128
+      "height" 128
+      "process" "fill jpg q80 lanczos"
+    )}}
+      <img src="{{ .RelPermalink }}" alt="{{ .Name }}">
     {{ end }}
-    {{ .firstName }} {{ .lastName }}
+    {{ $author.firstName }} {{ $author.lastName }}
   {{ end }}
 {{ end }}

@@ -14,7 +14,7 @@ params:
 
 This is blog post 2.
 
-This is an inline image...
+This is an image...
 
 {{< img image.webp >}}
 This is the image **caption**

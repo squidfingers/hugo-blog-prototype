@@ -1,19 +1,16 @@
-{{ $maxSize := 800 }}
-{{ with $.Page.Resources.Get (.Get 0) }}
-  {{ if eq .ResourceType "image" }}
-    {{ $resource := . }}
-    {{ if not (eq .MediaType.SubType "svg") }}
-      {{ if or (gt .Width $maxSize) (gt .Height $maxSize) }}
-        {{ $resource = .Process (printf "fit %dx%d jpg q80 lanczos" $maxSize $maxSize) }}
-      {{ end }}
+{{ with partial "process-image" (dict
+  "res" $.Page.Resources
+  "pattern" (.Get 0)
+  "width" 800
+  "height" 800
+  "process" "fit jpg q80 lanczos"
+)}}
+  <figure>
+    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
+    {{ with $.Inner }}
+      <figcaption>
+        {{ . | markdownify }}
+      </figcaption>
     {{ end }}
-    <figure>
-      <img src="{{ $resource.RelPermalink }}" alt="{{ path.BaseName $resource.Name | humanize }}">
-      {{ with $.Inner }}
-        <figcaption>
-          {{ . | markdownify }}
-        </figcaption>
-      {{ end }}
-    </figure>
-  {{ end }}
+  </figure>
 {{ end }}

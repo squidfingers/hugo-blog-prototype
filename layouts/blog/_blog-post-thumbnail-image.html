@@ -1,15 +1,11 @@
-{{ $width := 200 }}
-{{ $height := 200 }}
-{{ with .Resources.GetMatch "thumbnail.*" }}
-  {{ if eq .ResourceType "image" }}
-    {{ $resource := . }}
-    {{ if not (eq .MediaType.SubType "svg") }}
-      {{ if or (ne .Width $width) (ne .Height $height) }}
-        {{ $resource = .Process (printf "fill %dx%d jpg q80 lanczos" $width $height) }}
-      {{ end }}
-    {{ end }}
-    <div class="blog-post__media">
-      <img src="{{ $resource.RelPermalink }}" alt="{{ $resource.Name }}">
-    </div>
-  {{ end }}
+{{ with partial "process-image" (dict
+  "res" .Resources
+  "pattern" "thumbnail.*"
+  "width" 200
+  "height" 200
+  "process" "fill jpg q80 lanczos"
+)}}
+  <div class="blog-post__media">
+    <img src="{{ .RelPermalink }}" alt="{{ .Name }}">
+  </div>
 {{ end }}
