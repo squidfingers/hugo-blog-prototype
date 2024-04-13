@@ -8,7 +8,7 @@
       "height" 128
       "process" "fill jpg q80 lanczos"
     )}}
-      <img src="{{ .RelPermalink }}" alt="{{ .Name }}">
+      <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
     {{ end }}
     {{ $author.firstName }} {{ $author.lastName }}
   {{ end }}

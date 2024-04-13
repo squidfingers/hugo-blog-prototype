@@ -6,6 +6,6 @@
   "process" "fill jpg q80 lanczos"
 )}}
   <div class="blog-post__media">
-    <img src="{{ .RelPermalink }}" alt="{{ .Name }}">
+    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
   </div>
 {{ end }}

@@ -4,7 +4,9 @@
   {{/* Related blog posts */}}
   {{ with site.RegularPages.Related . | first 3 }}
     <div class="related-blog-posts">
-      <h3>Related</h3>
+      <h3>
+        Related
+      </h3>
       {{ range . }}
         {{ .Render "_blog-post-link" }}
       {{ end }}

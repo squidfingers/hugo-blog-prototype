@@ -1,7 +1,9 @@
 <article class="blog-post">
   <div class="blog-post__body">
     {{ .Render "_blog-post-hero-image" }}
-    <h2>{{ .Title }}</h2>
+    <h2>
+      {{ .Title }}
+    </h2>
     <div class="blog-post__meta">
       {{ .Render "_blog-post-meta" }}
       {{ partial "tags" . }}

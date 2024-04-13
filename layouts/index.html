@@ -3,7 +3,9 @@
     {{ $blog := . }}
     {{ with .Params.featured }}
       <div class="featured-blog-posts">
-        <h3>Featured blog post{{ if gt (len .) 1 }}s{{ end }}</h3>
+        <h3>
+          Featured blog post{{ if gt (len .) 1 }}s{{ end }}
+        </h3>
         {{ range . }}
           {{ with $blog.GetPage . }}
             {{ .Render "_blog-post-featured-summary" }}
