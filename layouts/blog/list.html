@@ -1,26 +1,30 @@
 {{ define "main" }}
-  {{/* RSS feed */}}
-  {{ with .OutputFormats.Get "rss" }}
-    <p>
-      <a href="{{ .Permalink }}">RSS</a>
-    </p>
-  {{ end }}
-  {{/* Paginated blog posts */}}
-  {{ range (.Paginator 3).Pages }}
-    {{ .Render "_blog-post-summary" }}
-  {{ end }}
-  {{/* Paginator navigation */}}
-  {{ with .Paginator }}
-    {{ if gt .TotalPages 1 }}
-      <nav>
-        {{ if .HasPrev }}
-          <a href="{{ .Prev.URL }}">← Newer</a>
-        {{ end }}
-        {{ if .HasNext }}
-          <a href="{{ .Next.URL }}">Older →</a>
-        {{ end }}
-      </nav>
-    {{ end }}
-  {{ end }}
-  {{/* template "_internal/pagination.html" . */}}
+  <div class="mx-auto px-6 py-20 max-w-3xl container">
+    {{/* BEGIN blog header */}}
+    <div class="flex items-center gap-4 pb-12">
+      <h2 class="font-medium text-6xl text-slate-600">
+        Blog
+      </h2>
+      {{ with .OutputFormats.Get "rss" }}
+        <a href="{{ .Permalink }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="block w-8 h-8 fill-sky-500 hover:fill-sky-600 transition-colors">
+            <path d="M6.18,15.64A2.18,2.18 0 0,1 8.36,17.82C8.36,19 7.38,20 6.18,20C5,20 4,19 4,17.82A2.18,2.18 0 0,1 6.18,15.64M4,4.44A15.56,15.56 0 0,1 19.56,20H16.73A12.73,12.73 0 0,0 4,7.27V4.44M4,10.1A9.9,9.9 0 0,1 13.9,20H11.07A7.07,7.07 0 0,0 4,12.93V10.1Z" />
+          </svg>
+        </a>
+      {{ end }}
+    </div>
+    {{/* END */}}
+    {{/* BEGIN paginated blog posts */}}
+    <div class="flex flex-col">
+      {{ range (.Paginator 3).Pages }}
+        <div class="border-slate-200 py-12 border-b-2">
+          {{ .Render "_blog-post-summary" }}
+        </div>
+      {{ end }}
+      <div class="pt-12">
+        {{ partial "paginator" . }}
+      </div>
+    </div>
+    {{/* END */}}
+  </div>
 {{ end }}

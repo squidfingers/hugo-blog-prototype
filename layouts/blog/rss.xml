@@ -20,8 +20,9 @@
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .PublishDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       {{- with .Params.author }}
-      {{- $author := index site.Data.authors . }}
-      {{ with $author }}<author>{{ .firstName }} {{ .lastName }}</author>{{ end }}
+      {{- with site.GetPage (printf "/authors/%s" . ) }}
+      <author>{{ .Title }}</author>
+      {{- end }}
       {{- end }}
       <guid>{{ .Permalink }}</guid>
       <description>{{ .Summary | transform.XMLEscape | safeHTML }}</description>

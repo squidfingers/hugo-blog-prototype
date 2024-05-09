@@ -2,24 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{{ site.Title }}</title>
-    {{ $cssOpts := dict "transpiler" "libsass" "targetPath" "css/main.css" }}
-    {{ with resources.Get "scss/main.scss" | toCSS $cssOpts | resources.Minify | resources.Fingerprint }}
-      <link rel="stylesheet" href="{{ .RelPermalink }}">
-    {{ end }}
+    <title>{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}</title>
+    {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $css.Permalink }}">
   </head>
-  <body>
-    <nav>
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/blog/">Blog</a>
-        </li>
+  <body class="bg-white">
+    <nav class="relative z-50 bg-slate-800 shadow px-6 py-4">
+      <ul class="flex items-center gap-6">
+        {{ range site.Menus.main }}
+          {{ $active := cond ($.Page.IsMenuCurrent "main" .) "bg-slate-700" "" }}
+          <li class="px-2 py-1 rounded {{ $active }}">
+            <a href="{{ .URL }}" class="font-medium text-slate-200 hover:text-white">{{ .Name }}</a>
+          </li>
+        {{ end }}
       </ul>
     </nav>
-    {{ block "main" . }}
-    {{ end }}
+    <main>
+      {{ block "main" . }}
+      {{ end }}
+    </main>
   </body>
 </html>

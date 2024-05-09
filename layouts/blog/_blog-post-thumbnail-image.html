@@ -1,11 +1,12 @@
-{{ with partial "process-image" (dict
+{{ with partial "utilities/process-image" (dict
   "res" .Resources
-  "pattern" "thumbnail.*"
-  "width" 200
-  "height" 200
+  "pattern" .Params.thumbnail
+  "width" 256
+  "height" 256
   "process" "fill jpg q80 lanczos"
 )}}
-  <div class="blog-post__media">
-    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
-  </div>
+  <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}" class="rounded-sm size-32">
+{{ else }}
+  {{/* Fallback */}}
+  <img src="/blog/thumbnail.svg" alt="" class="rounded-sm size-32">
 {{ end }}

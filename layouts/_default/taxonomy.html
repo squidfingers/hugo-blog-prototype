@@ -1,12 +1,14 @@
 {{ define "main" }}
-  <h2>
-    {{ .Data.Plural | humanize }}
-  </h2>
-  <ul>
-    {{ range .Data.Terms.ByCount }}
-      <li>
-        <a href="{{ .Page.RelPermalink }}">{{ .Page.Name }}</a> ({{ .Count }})
-      </li>
-    {{ end }}
-  </ul>
+  <div class="mx-auto px-6 py-20 max-w-3xl container">
+    <h2 class="pb-12 font-medium text-6xl text-slate-600">
+      {{ .Data.Plural | humanize }}
+    </h2>
+    <ul class="flex flex-wrap gap-4">
+      {{ range .Data.Terms.ByCount }}
+        <li>
+          <a href="{{ .Page.RelPermalink }}" class="inline-block bg-slate-400 hover:bg-slate-500 px-4 py-2 rounded-full font-medium text-white">{{ .Page.Name }} <span class="font-mono font-normal text-slate-300">({{ .Count }})</span></a> 
+        </li>
+      {{ end }}
+    </ul>
+  </div>
 {{ end }}

@@ -1,3 +1,14 @@
-<p>
-  {{ .Render "_blog-post-author" }} • {{ .Date.Format "Jan 2, 2006" }} • {{ .ReadingTime }} min read
-</p>
+<div class="text-slate-400">
+  Posted {{ .Date.Format "Jan 2, 2006" }}
+  {{/* BEGIN tags */}}
+  {{ with .GetTerms "tags" }}
+    in
+    {{ $i := 0 }}
+    {{ range . }}
+      {{- if gt $i 0 }}, {{ end }}<a href="{{ .RelPermalink }}" class="text-slate-600 hover:text-sky-600 underline transition-colors">{{ .Name }}</a>
+      {{- $i = add $i 1 -}}
+    {{ end }}
+  {{ end }}
+  {{/* END */}}
+  &ndash; {{ .ReadingTime }} min read
+</div>

@@ -1,11 +1,12 @@
-{{ with partial "process-image" (dict
+{{ with partial "utilities/process-image" (dict
   "res" .Resources
-  "pattern" "hero.*"
+  "pattern" .Params.hero
   "width" 1600
-  "height" 600
-  "process" "fill jpg q80 lanczos"
+  "height" 400
+  "process" "fill center jpg q80 lanczos"
 )}}
-  <div class="blog-post__hero">
-    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
-  </div>
+  <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}" class="w-full max-h-96 object-cover">
+{{ else }}
+  {{/* Fallback */}}
+  <img src="/blog/hero.svg" alt="" class="w-full max-h-96 object-cover">
 {{ end }}

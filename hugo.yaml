@@ -1,13 +1,28 @@
 languageCode: "en-us"
 title: "Blog prototype"
 
+menu:
+  main:
+  - name: Home
+    pageRef: /
+    weight: 1
+  - name: Blog
+    pageRef: /blog/
+    weight: 2
+
+# Shorten page summaries
+summaryLength: 30
+
+# Set URL structure for blog post
 permalinks:
   page:
-    blog: /blog/:year/:month/:day/:slug/ # URL structure for blog post
+    blog: /blog/:year/:month/:day/:slug/
 
 # Only relate content using keywords and tags
 related:
-  includeNewer: false
+  # `includeNewer: true`: All related content is shown, regardless of the date. Related content for older posts may change as new related content gets added.
+  # `includeNewer: false`: Related content is only shown if it's older than the current page
+  includeNewer: true
   indices:
   - applyFilter: false
     cardinalityThreshold: 0

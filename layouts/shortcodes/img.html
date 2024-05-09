@@ -1,4 +1,4 @@
-{{ with partial "process-image" (dict
+{{ with partial "utilities/process-image" (dict
   "res" $.Page.Resources
   "pattern" (.Get 0)
   "width" 800
@@ -6,7 +6,7 @@
   "process" "fit jpg q80 lanczos"
 )}}
   <figure>
-    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
+    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}" class="rounded-sm">
     {{ with $.Inner }}
       <figcaption>
         {{ . | markdownify }}

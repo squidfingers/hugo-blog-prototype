@@ -1,15 +1,21 @@
 {{ with .Params.author }}
-  {{ $author := index site.Data.blog.authors . }}
-  {{ if $author }}
-    {{ with partial "process-image" (dict
-      "res" resources
-      "pattern" (printf "%s%s" "authors/" $author.avatar)
-      "width" 128
-      "height" 128
-      "process" "fill jpg q80 lanczos"
-    )}}
-      <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
-    {{ end }}
-    {{ $author.firstName }} {{ $author.lastName }}
+  {{ with site.GetPage (printf "/authors/%s" . ) }}
+    <div class="flex items-center gap-2">
+      {{ if .Params.avatar }}
+        {{ with partial "utilities/process-image" (dict
+          "res" .Resources
+          "pattern" .Params.avatar
+          "width" 64
+          "height" 64
+          "process" "fill jpg q80 lanczos"
+        ) }}
+          <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}" class="rounded-full size-6">
+        {{ else }}
+          {{/* Fallback */}}
+          <img src="/authors/avatar.svg" alt="" class="rounded-full size-6">
+        {{ end }}
+      {{ end }}
+      <a href="{{ .RelPermalink }}" class="text-slate-600 hover:text-sky-600 transition-colors">{{ .Title }}</a>
+    </div>
   {{ end }}
 {{ end }}

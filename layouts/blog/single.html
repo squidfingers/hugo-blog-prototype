@@ -1,15 +1,33 @@
 {{ define "main" }}
-  {{/* Blog post */}}
-  {{ .Render "_blog-post" }}
-  {{/* Related blog posts */}}
-  {{ with site.RegularPages.Related . | first 3 }}
-    <div class="related-blog-posts">
-      <h3>
-        Related
-      </h3>
-      {{ range . }}
-        {{ .Render "_blog-post-link" }}
+  {{ .Render "_blog-post-hero-image" }}
+  <div class="mx-auto px-6 pb-20 max-w-3xl container">
+    {{/* BEGIN blog post */}}
+    <div class="flex flex-col gap-12">
+      <div class="flex sm:flex-row flex-col justify-between sm:items-center gap-4 bg-white shadow -mt-5 px-6 py-2 rounded-md sm:rounded-full">
+        {{ .Render "_blog-post-meta" }}
+        {{ .Render "_blog-post-author" }}
+      </div>
+      <h2 class="font-medium text-4xl text-slate-600">
+        {{ .Title }}
+      </h2>
+      <div class="max-w-none prose prose-slate">
+        {{ .Content }}
+      </div>
+      {{/* BEGIN related blog posts */}}
+      {{ with site.RegularPages.Related . | first 3 }}
+        <div class="flex flex-col gap-8 border-slate-200 py-12 border-t-2">
+          <h3 class="font-medium text-3xl text-slate-600">
+            Related
+          </h3>
+          <div class="flex flex-col gap-6">
+            {{ range . }}
+              {{ .Render "_blog-post-link" }}
+            {{ end }}
+          </div>
+        </div>
       {{ end }}
+      {{/* END */}}
     </div>
-  {{ end }}
+    {{/* END */}}
+  </div>
 {{ end }}

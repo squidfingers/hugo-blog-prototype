@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <div class="mx-auto px-6 py-20 max-w-3xl container">
+    <h2 class="pb-12 font-medium text-6xl text-slate-600">
+      Authors
+    </h2>
+    {{/* BEGIN authors */}}
+    <div class="flex flex-col gap-12">
+      {{ range .RegularPages }}
+        <div class="flex items-center gap-4">
+          {{ .Render "_author-image" }}
+          <h3 class="font-medium text-3xl text-slate-600">
+            <a href="{{ .RelPermalink }}" class="text-slate-600 hover:text-sky-600 transition-colors">
+              {{ .Title }}
+            </a>
+          </h3>
+        </div>
+      {{ end }}
+    </div>
+    {{/* END */}}
+  </div>
+{{ end }}
