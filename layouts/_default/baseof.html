@@ -3,8 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}</title>
-    {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
-    <link rel="stylesheet" href="{{ $css.Permalink }}">
+    {{ with resources.Get "css/main.css" }}
+      {{ with . | resources.Minify | resources.Fingerprint }}
+        <link rel="stylesheet" href="{{ .Permalink }}">
+      {{ end }}
+    {{ end }}
   </head>
   <body class="bg-white">
     <nav class="relative z-50 bg-slate-800 shadow px-6 py-4">
