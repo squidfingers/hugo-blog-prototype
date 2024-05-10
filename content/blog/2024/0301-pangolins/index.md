@@ -19,7 +19,7 @@ Phataginus, and Smutsia. Manis comprises four species found in Asia, while
 Phataginus and Smutsia include two species each, all found in sub-Saharan
 Africa. These species range in size from 30 to 100 cm (12 to 39 in). A number of
 extinct pangolin species are also known. In September 2023, nine species were
-reported.[^1]
+reported. [^1]
 
 [^1]:
     https://www.nytimes.com/2023/09/25/science/pangolins-new-species-scales.html

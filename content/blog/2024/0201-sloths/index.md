@@ -35,10 +35,10 @@ up the xenarthran order Pilosa.
 Sloths are so named because of their very low metabolism and deliberate
 movements. Their slowness permits their low-energy diet of leaves and avoids
 detection by predatory hawks and cats that hunt by sight. Sloths are almost
-helpless on the ground but are able to swim.[^1] The shaggy coat has grooved
+helpless on the ground but are able to swim. [^1] The shaggy coat has grooved
 hair that is host to symbiotic green algae which camouflage the animal in the
 trees and provide it nutrients. The algae also nourish sloth moths, some species
-of which exist solely on sloths.[^2]
+of which exist solely on sloths. [^2]
 
 [^1]:
     https://web.archive.org/web/20171201031042/http://slothconservation.com/about-the-sloth/overview/

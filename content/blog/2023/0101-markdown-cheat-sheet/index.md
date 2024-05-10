@@ -94,7 +94,7 @@ young){{< /img >}}
 You can reference a footnote like this.
 
 > If you don't have time to do it right, when will you have time to do it
-> over?[^1]
+> over? [^1]
 
 [^1]: https://www.brainyquote.com/quotes/john_wooden_384653
 
