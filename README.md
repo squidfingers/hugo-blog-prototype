@@ -1,9 +1,12 @@
+## Installation
+
+```bash
+npm install -D tailwindcss postcss postcss-cli autoprefixer
+npm install -D @tailwindcss/typography
+```
+
 ## Local development
 
 ```bash
-npx tailwindcss -i ./assets/css/tailwind.css -o ./assets/css/main.css -w
-```
-
-```bash
-hugo server --disableFastRender
+hugo server --cleanDestinationDir --disableFastRender --gc
 ```
