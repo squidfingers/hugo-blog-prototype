@@ -1,0 +1,42 @@
+{{/*
+
+@param {String} .text
+@param {String} .href
+@param {String} .variant
+@param {String} .size
+@param {Boolean} .block
+
+*/}}
+
+{{ $class := slice "rounded-md font-medium transition-colors focus:outline-none" }}
+
+{{/* Get variant */}}
+{{ if eq .variant "light" }}
+  {{ $class = $class | append "text-sky-500 bg-sky-100 hover:text-sky-600 hover:bg-sky-200" }}
+{{ else }}
+  {{ $class = $class | append "text-white bg-sky-500 hover:bg-sky-600" }}
+{{ end }}
+
+{{/* Get size */}}
+{{ if eq .size "sm" }}
+  {{ $class = $class | append "text-sm px-3 py-2" }}
+{{ else if eq .size "lg" }}
+  {{ $class = $class | append "text-lg px-6 py-4" }}
+{{ else }}
+  {{ $class = $class | append "text-base px-4 py-3" }}
+{{ end }}
+
+{{/* Get block */}}
+{{ if eq .block true }}
+  {{ $class = $class | append "block" }}
+{{ else }}
+  {{ $class = $class | append "inline-block" }}
+{{ end }}
+
+{{/* Build class names */}}
+{{ $class = delimit $class " " }}
+
+{{/* Output */}}
+<a{{ with .href }} href="{{ . }}"{{ end }} class="{{ $class }}" {{ if hasPrefix .href "http" }} target="_blank" rel="noopener"{{ end }}>
+  {{ .text | safeHTML }}
+</a>
