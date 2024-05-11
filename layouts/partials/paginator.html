@@ -2,10 +2,14 @@
   {{ if gt .TotalPages 1 }}
     <nav class="flex gap-4">
       {{ if .HasPrev }}
-        {{ partial "components/button.html" (dict "href" .Prev.URL "text" "← Newer") }}
+        {{ partial "components/button" (dict "href" .Prev.URL "text" "← Newer") }}
+      {{ else }}
+        {{ partial "components/button" (dict "variant" "disabled" "text" "← Newer") }}
       {{ end }}
       {{ if .HasNext }}
-        {{ partial "components/button.html" (dict "href" .Next.URL "text" "Older →") }}
+        {{ partial "components/button" (dict "href" .Next.URL "text" "Older →") }}
+      {{ else }}
+        {{ partial "components/button" (dict "variant" "disabled" "text" "Older →") }}
       {{ end }}
     </nav>
   {{ end }}

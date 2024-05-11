@@ -2,9 +2,13 @@
 
 @param {String} .text
 @param {String} .href
-@param {String} .variant
-@param {String} .size
-@param {Boolean} .block
+@param {String} .variant - "light", "disabled", or Default
+@param {String} .size - "sm", "lg", or Default
+@param {Boolean} .block - Defaults to false
+
+@example
+
+{{ partial "components/button" (dict "href" "/about" "text" "Learn more") }}
 
 */}}
 
@@ -13,6 +17,8 @@
 {{/* Get variant */}}
 {{ if eq .variant "light" }}
   {{ $class = $class | append "text-sky-500 bg-sky-100 hover:text-sky-600 hover:bg-sky-200" }}
+{{ else if eq .variant "disabled" }}
+  {{ $class = $class | append "text-slate-400 bg-slate-200 cursor-pointer pointer-events-none" }}
 {{ else }}
   {{ $class = $class | append "text-white bg-sky-500 hover:bg-sky-600" }}
 {{ end }}
