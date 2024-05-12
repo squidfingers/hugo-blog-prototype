@@ -53,3 +53,24 @@ outputs:
     - HTML
   section:
     - HTML
+
+# Get Tailwind 3 to build nicely with Hugo
+# https://github.com/bep/hugo-starter-tailwind-basic/tree/master
+module:
+  mounts:
+  - source: assets
+    target: assets
+  - source: "hugo_stats.json"
+    target: "assets/watching/hugo_stats.json"
+build:
+  buildStats:
+    enable: true
+  cachebusters:
+  - source: assets/watching/hugo_stats\.json
+    target: main\.css
+  - source: (postcss|tailwind)\.config\.js
+    target: css
+  - source: assets/.*\.(js|ts|jsx|tsx)
+    target: js
+  - source: assets/.*\.(.*)$
+    target: $1

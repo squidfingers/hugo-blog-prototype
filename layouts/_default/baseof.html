@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <title>{{ with .Title }}{{ . }} | {{ end }}{{ .Site.Title }}</title>
     {{ with resources.Get "css/main.css" }}
-      {{ with . | postCSS | minify | fingerprint | resources.PostProcess }}
-        <link rel="stylesheet" href="{{ .RelPermalink }}">
+      {{ $css := . | resources.PostCSS }}
+      {{ if hugo.IsProduction }}
+        {{ $css = $css | minify | fingerprint | resources.PostProcess }}
       {{ end }}
+      <link rel="stylesheet" href="{{ $css.RelPermalink }}">
     {{ end }}
   </head>
   <body class="bg-white">
