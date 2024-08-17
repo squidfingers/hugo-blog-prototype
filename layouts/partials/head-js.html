@@ -1,0 +1,32 @@
+{{/*
+Include scripts defined in frontmatter params.
+The file must be located in the assets directory.
+
+For example:
+
+```yaml
+params:
+  js: "js/my-script.js"
+```
+
+or
+
+```yaml
+params:
+  js: ["js/script-1.js", "js/script-2.js"]
+```
+
+*/}}
+{{ with .Params.js }}
+  {{ $js = . }}
+  {{ if not reflect.IsSlice $js }}
+    {{ $js = slice $js }}
+  {{ end }}
+  {{ range $js }}
+    {{ with resources.GetMatch . }}
+      {{ with . | minify | fingerprint }}
+        <script src="{{ .RelPermalink }}"></script>
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

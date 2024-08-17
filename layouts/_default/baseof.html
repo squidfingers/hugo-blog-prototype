@@ -3,16 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}</title>
-    {{ with .OutputFormats.Get "rss" }}
-      {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
-    {{ end }}
-    {{ with resources.Get "css/main.css" }}
-      {{ $css := . | resources.PostCSS }}
-      {{ if hugo.IsProduction }}
-        {{ $css = $css | minify | fingerprint | resources.PostProcess }}
-      {{ end }}
-      <link rel="stylesheet" href="{{ $css.RelPermalink }}">
-    {{ end }}
+    {{ partial "head-rss" . }}
+    {{ partial "head-css" . }}
+    {{ partial "head-js" . }}
   </head>
   <body class="bg-white">
     <nav class="relative z-50 bg-slate-800 shadow px-6 py-4">
