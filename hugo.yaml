@@ -10,6 +10,11 @@ menu:
     pageRef: /blog/
     weight: 2
 
+# Open Graph defaults
+params:
+  description: "The default description for my blog"
+  images: [default.jpg]
+
 # Shorten page summaries
 summaryLength: 30
 

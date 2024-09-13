@@ -17,7 +17,7 @@ not have any effect for these two processes.
 
 # Process page resource
 
-{{ with partial "utilities/process-image" (dict
+{{ with partial "utils/process-image" (dict
   "res" .Resources
   "pattern" "image.webp"
   "width" 1600
@@ -29,7 +29,7 @@ not have any effect for these two processes.
 
 # Process global resource
 
-{{ with partial "utilities/process-image" (dict
+{{ with partial "utils/process-image" (dict
   "res" resources
   "pattern" (printf "%s%s.*" "authors/" .avatar)
   "width" 128

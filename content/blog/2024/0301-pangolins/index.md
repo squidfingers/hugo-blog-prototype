@@ -8,7 +8,7 @@ keywords:
 params:
   author: travis
   thumbnail: pangolin.jpg
-  hero: pangolin.jpg
+  cover: pangolin.jpg
 ---
 
 _From Wikipedia_
@@ -24,7 +24,7 @@ reported. [^1]
 [^1]:
     https://www.nytimes.com/2023/09/25/science/pangolins-new-species-scales.html
 
-{{< img pangolin.jpg >}}A Philippine pangolin pup and its mother{{< /img >}}
+{{< blog-img pangolin.jpg >}}A Philippine pangolin pup and its mother{{< /blog-img >}}
 
 ## Description
 
