@@ -2,7 +2,7 @@
 
 @param {String} .text
 @param {String} .href
-@param {String} .variant - "light", "disabled", or Default
+@param {String} .variant - "light", "disabled", "active" or Default
 @param {String} .size - "sm", "lg", or Default
 @param {Boolean} .block - Defaults to false
 
@@ -12,24 +12,26 @@
 
 */}}
 
-{{ $class := slice "rounded-md font-medium transition-colors focus:outline-none" }}
+{{ $class := slice "rounded-md font-medium border-2 border-solid transition-colors focus:outline-none" }}
 
 {{/* Get variant */}}
 {{ if eq .variant "light" }}
-  {{ $class = $class | append "text-sky-500 bg-sky-100 hover:text-sky-600 hover:bg-sky-200" }}
+  {{ $class = $class | append "text-sky-500 bg-sky-100 border-sky-100 hover:text-sky-600 hover:bg-sky-200 hover:border-sky-200" }}
 {{ else if eq .variant "disabled" }}
-  {{ $class = $class | append "text-slate-400 bg-slate-200 cursor-pointer pointer-events-none" }}
+  {{ $class = $class | append "text-slate-400 bg-slate-200 border-slate-200 pointer-events-none cursor-pointer pointer-events-none" }}
+{{ else if eq .variant "active" }}
+  {{ $class = $class | append "text-slate-500 bg-white border-slate-500" }}
 {{ else }}
-  {{ $class = $class | append "text-white bg-sky-500 hover:bg-sky-600" }}
+  {{ $class = $class | append "text-white bg-sky-500 border-sky-500 hover:bg-sky-600 hover:border-sky-600" }}
 {{ end }}
 
 {{/* Get size */}}
 {{ if eq .size "sm" }}
-  {{ $class = $class | append "text-sm px-3 py-2" }}
+  {{ $class = $class | append "text-sm px-3 py-1" }}
 {{ else if eq .size "lg" }}
-  {{ $class = $class | append "text-lg px-6 py-4" }}
+  {{ $class = $class | append "text-lg px-6 py-3" }}
 {{ else }}
-  {{ $class = $class | append "text-base px-4 py-3" }}
+  {{ $class = $class | append "text-base px-4 py-2" }}
 {{ end }}
 
 {{/* Get block */}}
@@ -37,6 +39,11 @@
   {{ $class = $class | append "block" }}
 {{ else }}
   {{ $class = $class | append "inline-block" }}
+{{ end }}
+
+{{/* Set cursor */}}
+{{ if and (not .href) (eq .variant "disabled") }}
+  {{ $class = $class | append "cursor-pointer pointer-events-none" }}
 {{ end }}
 
 {{/* Build class names */}}

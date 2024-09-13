@@ -13,6 +13,10 @@ menu:
 # Shorten page summaries
 summaryLength: 30
 
+# Set number of pages shown on a pager 
+pagination:
+  pagerSize: 3
+  
 # Set URL structure for blog post
 permalinks:
   page:

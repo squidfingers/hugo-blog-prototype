@@ -5,13 +5,13 @@
     </h2>
     {{/* BEGIN paginated blog posts */}}
     <div class="flex flex-col">
-      {{ range (.Paginator 3).Pages }}
+      {{ range .Paginator.Pages }}
         <div class="border-slate-200 py-12 border-b-2">
           {{ .Render "_blog-post-summary" }}
         </div>
       {{ end }}
       <div class="pt-12">
-        {{ partial "paginator" . }}
+        {{ partial "components/numeric-paginator" . }}
       </div>
     </div>
     {{/* END */}}
