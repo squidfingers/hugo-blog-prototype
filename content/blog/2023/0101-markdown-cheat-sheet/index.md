@@ -43,8 +43,8 @@ _Emphasis_, aka _italics_, with asterisks or underscores.
 
 ---
 
-{{< blog-img image.jpg >}}Virginia opossum, _Didelphis virginiana_, (mother with nine
-young){{< /blog-img >}}
+{{< blog-img image.jpg >}}Virginia opossum, _Didelphis virginiana_, (mother with
+nine young){{< /blog-img >}}
 
 ## Lists
 
@@ -93,8 +93,8 @@ young){{< /blog-img >}}
 
 You can reference a footnote like this.
 
-> If you don't have time to do it right, when will you have time to do it
-> over? [^1]
+> If you don't have time to do it right, when will you have time to do it over?
+> [^1]
 
 [^1]: https://www.brainyquote.com/quotes/john_wooden_384653
 

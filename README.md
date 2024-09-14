@@ -4,9 +4,7 @@
 npm run dev
 ```
 
-## Blog post images
-
-### Thumbnail and cover images
+## Blog post thumbnail and cover images
 
 Thumbnail and cover images for a blog post can be defined as frontmatter params.
 These images will be processed to the appropriate size, so the same source image
@@ -24,21 +22,31 @@ resource named `thumbnail.*` or `cover.*`.
 If page resources do not exist for the thumbnail and cover images, then they
 will fallback to default images located `/static/blog/` directory.
 
-### Images in content
+## Blog post content images
 
 If you need to insert an image into the content of a blog post, you can use the
 `blog-img` shortcode. This shortcode will process the image to the appropriate
-size.
+size. For example:
+
+Without caption
 
 ```markdown
-{{< blog-img image.jpg >}}Image caption{{< /blog-img >}}
+{{< blog-img image.jpg />}}
 ```
 
-### Open Graph images
+With caption
 
-Open Graph images can be defined in a couple ways. An image can be defined in
-the frontmatter `images` array. It can reference a page resource, or can also be
-an absolute url from the static directory. For example:
+```markdown
+{{< blog-img image.jpg >}}Image **caption**{{< /blog-img >}}
+```
+
+## Open Graph images
+
+Open Graph images for a page can be defined in a couple ways.
+
+An image can be defined in the frontmatter `images` array. It can reference a
+page resource, or can also be an absolute url from the static directory. For
+example:
 
 ```yaml
 images: [image.jpg]
