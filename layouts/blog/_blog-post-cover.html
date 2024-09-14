@@ -1,6 +1,7 @@
+{{ $pattern := default "cover.*" .Params.cover }}
 {{ with partial "utils/process-image" (dict
   "res" .Resources
-  "pattern" .Params.cover
+  "pattern" $pattern
   "width" 1600
   "height" 400
   "process" "fill center jpg q80 lanczos"

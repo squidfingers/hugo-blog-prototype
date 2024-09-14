@@ -7,21 +7,8 @@ keywords:
   - "red pandas"
 params:
   author: travis
-  thumbnail: red-panda.jpg
-  cover: red-panda.jpg
-
-# == Setting an Open Graph image ==
-#
-# If the images array is empty or undefined, and there is a page resource image
-# with file name matching *feature*, *cover*, or *thumbnail*, it will be used
-# for the Open Graph image. On this page, `thumbnail.jpg` will be used as the
-# image, since it's a page resource. Note that it's not used as the blog post
-# thumbnail, but it can if desired.
-#
-# If an image is defined in the images array, it can reference a page resource,
-# or can also be an absolute url from the static directory. 
-# For example:
-# images: [red-panda.jpg]
+  thumbnail: cover.jpg
+images: [thumbnail.jpg] # Open Graph image
 ---
 
 _From Wikipedia_
@@ -34,7 +21,7 @@ with a 28–48.5 cm (11.0–19.1 in) tail, and it weighs between 3.2 and 15 kg (
 and 33.1 lb). It is well adapted to climbing due to its flexible joints and
 curved semi-retractile claws.
 
-{{< blog-img red-panda.jpg >}}Red panda sitting on a tree branch{{< /blog-img >}}
+{{< blog-img cover.jpg >}}Red panda sitting on a tree branch{{< /blog-img >}}
 
 ## Etymology
 

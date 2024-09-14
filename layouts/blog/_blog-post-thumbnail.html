@@ -1,6 +1,7 @@
+{{ $pattern := default "thumbnail.*" .Params.thumbnail }}
 {{ with partial "utils/process-image" (dict
   "res" .Resources
-  "pattern" .Params.thumbnail
+  "pattern" $pattern
   "width" 256
   "height" 256
   "process" "fill jpg q80 lanczos"
