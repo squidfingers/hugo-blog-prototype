@@ -2,7 +2,7 @@
   {{ if gt .TotalPages 1 }}
     <nav>
       <ul class="flex justify-center gap-4">
-        <!-- Previous Page -->
+        {{/* Previous Page */}}
         <li>
           {{ if .HasPrev }}
             {{ partial "components/button" (dict "href" .Prev.URL "text" "← Prev") }}
@@ -10,11 +10,12 @@
             {{ partial "components/button" (dict "variant" "disabled" "text" "← Prev") }}
           {{ end }}
         </li>
-        <!-- Page Numbers: Show two pages on either side of the current page -->
+        {{/* Page Numbers */}}
         {{ $currentPage := .PageNumber }}
         {{ $totalPages := .TotalPages }}
-        {{ $window := 2 }} <!-- Set the window size (2 pages on either side) -->
-        <!-- Show first page and ellipsis if there are hidden pages at the start -->
+        {{/* Page Numbers: Show two pages on either side of the current page */}}
+        {{ $window := 2 }}
+        {{/* Page Numbers: Show first page and ellipsis if there are hidden pages at the start */}}
         {{ if gt $currentPage (add $window 1) }}
           <li>
             {{ partial "components/button" (dict "href" .First.URL "text" 1) }}
@@ -23,7 +24,7 @@
             ...
           </li>
         {{ end }}
-        <!-- Display pages around the current page -->
+        {{/* Page Numbers: Display pages around the current page */}}
         {{ range $i, $p := .Pagers }}
           {{ $pageNumber := add $i 1 }}
           {{ if and (ge $pageNumber (sub $currentPage $window)) (le $pageNumber (add $currentPage $window)) }}
@@ -36,7 +37,7 @@
             </li>
           {{ end }}
         {{ end }}
-        <!-- Show last page and ellipsis if there are hidden pages at the end -->
+        {{/* Page Numbers: Show last page and ellipsis if there are hidden pages at the end */}}
         {{ if lt $currentPage (sub $totalPages $window) }}
           <li class="text-base text-slate-500 font-medium px-1 py-2">
             ...
@@ -45,7 +46,7 @@
             {{ partial "components/button" (dict "href" .Last.URL "text" $totalPages) }}
           </li>
         {{ end }}
-        <!-- Next Page -->
+        {{/* Next Page */}}
         <li>
           {{ if .HasNext }}
             {{ partial "components/button" (dict "href" .Next.URL "text" "Next →") }}

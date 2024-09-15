@@ -40,6 +40,17 @@ With caption
 {{< blog-img image.jpg >}}Image **caption**{{< /blog-img >}}
 ```
 
+## Author images
+
+An author avatar can be defined by adding an image resource to the page bundle,
+and referencing it in the `avatar` frontmatter param. The image will be
+processed to the appropriate size.
+
+```yaml
+params:
+  avatar: image.jpg
+```
+
 ## Open Graph images
 
 Open Graph images for a page can be defined in a couple ways.
