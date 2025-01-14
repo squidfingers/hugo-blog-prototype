@@ -1,6 +1,6 @@
 {{/*
 
-@param {Collection} res - Defaults to .Resources
+@param {Collection} res - .Resources or resources
 @param {String} pattern
 @param {Int} width
 @param {Int} height
@@ -42,7 +42,7 @@ not have any effect for these two processes.
 
 */}}
 
-{{ $res := default .Resources .res }}
+{{ $res := .res }}
 {{ $pattern := .pattern }}
 {{ $width := .width }}
 {{ $height := .height }}
