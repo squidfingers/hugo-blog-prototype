@@ -4,29 +4,29 @@
 @source "hugo_stats.json";
 
 @theme inline {
-  --font-sans: 'Inter Tight', 'ui-sans-serif', 'Helvetica', 'Arial', sans-serif;
-  --font-mono: 'ui-monospace', 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace;
+  --font-sans: "Inter Tight", "ui-sans-serif", "Helvetica", "Arial", sans-serif;
+  --font-mono: "ui-monospace", "Menlo", "Monaco", "Consolas", "Courier New", monospace;
 }
 @layer theme {
   @font-face {
     font-display: swap;
-    font-family: 'Inter Tight';
+    font-family: "Inter Tight";
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/inter-tight-v7-latin-regular.woff2') format('woff2');
+    src: url("/fonts/inter-tight-v7-latin-regular.woff2") format("woff2");
   }
   @font-face {
     font-display: swap;
-    font-family: 'Inter Tight';
+    font-family: "Inter Tight";
     font-style: normal;
     font-weight: 500;
-    src: url('/fonts/inter-tight-v7-latin-500.woff2') format('woff2');
+    src: url("/fonts/inter-tight-v7-latin-500.woff2") format("woff2");
   }
   @font-face {
     font-display: swap;
-    font-family: 'Inter Tight';
+    font-family: "Inter Tight";
     font-style: normal;
     font-weight: 600;
-    src: url('/fonts/inter-tight-v7-latin-600.woff2') format('woff2');
+    src: url("/fonts/inter-tight-v7-latin-600.woff2") format("woff2");
   }
 }
