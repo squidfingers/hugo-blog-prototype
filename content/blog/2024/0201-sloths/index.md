@@ -28,7 +28,7 @@ in the trees of the tropical rainforests of South America and Central America.
 Sloths are considered to be most closely related to anteaters, together making
 up the xenarthran order Pilosa.
 
-![_Bradypus variegatus_, a three-toed sloth](sloth.webp)
+![_Bradypus variegatus_, a three-toed sloth](cover.webp)
 
 Sloths are so named because of their very low metabolism and deliberate
 movements. Their slowness permits their low-energy diet of leaves and avoids
