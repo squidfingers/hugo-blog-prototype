@@ -4,11 +4,21 @@
 npm run dev
 ```
 
-## Blog post thumbnail and cover images
+## Featuring a blog post
 
-To associate a cover, thumbnail, or feature image to a blog post, you do not
-have to specify them in the frontmatter. You can simply name them `cover`,
-`thumbnail`, or `feature`, place them in the page bundle, and they will
+The most recent blog post with the `featured` frontmatter param set to `true`
+will be shown on the home page.
+
+```yaml
+params:
+  featured: true
+```
+
+## Blog post feature, cover, and thumbnail images
+
+To associate a feature, cover, or thumbnail image to a blog post, you do not
+have to specify them in the frontmatter. You can simply name them `feature`,
+`cover`, or `thumbnail`, place them in the page bundle, and they will
 automattically be used. The images will be processed to the appropriate size.
 For example:
 
@@ -51,7 +61,7 @@ example:
 ![My image](image.jpg)
 ```
 
-## Author images
+## Author avatars
 
 An author avatar can be defined by adding an image resource to the page bundle,
 and referencing it in the `avatar` frontmatter param. The image will be
