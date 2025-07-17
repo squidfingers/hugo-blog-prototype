@@ -8,6 +8,8 @@
     {{ with (templates.Defer (dict "key" "global")) }}
       {{ partial "head-css" . }}
     {{ end }}
+    {{ block "head" . }}
+    {{ end }}
   </head>
   <body class="bg-white">
     <nav class="relative z-50 bg-slate-800 shadow-sm px-6 py-4">

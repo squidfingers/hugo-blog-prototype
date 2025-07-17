@@ -1,0 +1,50 @@
+{{ define "head" }}
+  {{ partial "utils/get-script" (dict "src" (slice "js/lunr.js" "js/search.js") "dst" "js/lunr-search.js") }}
+{{ end }}
+
+{{ define "main" }}
+
+  <div class="mx-auto px-6 py-20 max-w-3xl container">
+    <h2 class="mb-12 font-medium text-6xl text-slate-600">
+      Search
+    </h2>
+    <div id="search-form" class="mb-12">
+      <form action="/search/" method="get">
+        <input type="text" name="q" placeholder="Search blog posts..." class="w-full rounded-full bg-transparent placeholder:text-slate-400 text-xl text-slate-600 border border-slate-200 px-6 py-3 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow">
+      </form>
+    </div>
+    <div id="search-results"></div>
+  </div>
+
+  <template id="search-results-loader-template" hidden>
+    <p>Loading</p>
+  </template>
+
+  <template id="search-results-header-template" hidden>
+    <div class="search-results-header">
+      <h3 class="mb-12 text-lg text-slate-600">
+        <span class="search-results-header__text"></span> “<span class="search-results-header__query | font-bold"></span>”
+      </h3>
+      <p class="search-results-header__empty">
+        <a href="#" onclick="history.back()" class="font-medium text-sky-500 hover:text-sky-600 transition-colors">← Back</a>
+      </p>
+    </div>
+  </template>
+
+  <template id="search-results-error-template" hidden>
+    <p class="font-medium text-lg text-slate-600">Sorry, an error occurred while processing your search results.</p>
+  </template>
+
+  <template id="search-results-entry-template" hidden>
+    <article class="search-results-entry | mb-8 pb-8 border-slate-200 border-b-2">
+      <p class="mb-1">
+        <a class="search-results-entry__link | text-sm text-slate-400 hover:text-sky-600 transition-colors"></a>
+      </p>
+      <h4 class="mb-4 font-medium text-3xl text-slate-600">
+        <a class="search-results-entry__title | text-slate-600 hover:text-sky-600 transition-colors"></a>
+      </h4>
+      <p class="search-results-entry__summary | text-slate-600"></p>
+    </article>
+  </template>
+
+{{ end }}

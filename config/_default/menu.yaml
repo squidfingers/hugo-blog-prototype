@@ -5,3 +5,6 @@ main:
   - name: Blog
     pageRef: /blog/
     weight: 2
+  - name: Search
+    pageRef: /search/
+    weight: 3

@@ -1,6 +1,6 @@
 ---
 title: This title doesn't get used in the url or in the blog post list
-LinkTitle: Sloths
+linkTitle: Sloths
 slug: sloths
 date: 2024-02-01T00:00:00Z
 tags:

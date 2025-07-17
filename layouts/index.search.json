@@ -1,0 +1,17 @@
+{{- $s := newScratch }}
+{{- $s.Add "search" slice }}
+{{- range where site.RegularPages "Section" "blog" }}
+  {{- $s.Add
+    "search"
+    (dict
+      "uri"         .RelPermalink
+      "title"       .Title
+      "linkTitle"   .LinkTitle
+      "description" .Description
+      "keywords"    .Keywords
+      "tags"        (.Params.tags)
+      "content"     (.Plain | htmlUnescape)
+    )
+  }}
+{{- end }}
+{{- $s.Get "search" | jsonify }}
