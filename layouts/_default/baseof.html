@@ -5,15 +5,17 @@
     <title>{{ with .Title }}{{ . }} | {{ end }}{{ site.Title }}</title>
     {{ partial "head-meta" . }}
     {{ partial "head-rss" . }}
-    {{ partial "head-css" . }}
+    {{ with (templates.Defer (dict "key" "global")) }}
+      {{ partial "head-css" . }}
+    {{ end }}
     {{ partial "head-js" . }}
   </head>
   <body class="bg-white">
-    <nav class="relative z-50 bg-slate-800 shadow px-6 py-4">
+    <nav class="relative z-50 bg-slate-800 shadow-sm px-6 py-4">
       <ul class="flex items-center gap-6">
         {{ range site.Menus.main }}
-          {{ $active := cond ($.Page.IsMenuCurrent "main" .) "bg-slate-700" "" }}
-          <li class="px-2 py-1 rounded {{ $active }}">
+          {{ $active := cond ($.Page.IsMenuCurrent "main" .) "bg-slate-600" "" }}
+          <li class="px-2 py-1 rounded-sm {{ $active }}">
             <a href="{{ .URL }}" class="font-medium text-slate-200 hover:text-white">{{ .Name }}</a>
           </li>
         {{ end }}

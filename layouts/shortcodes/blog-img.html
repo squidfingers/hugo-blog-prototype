@@ -6,7 +6,7 @@
   "process" "fit jpg q80 lanczos"
 )}}
   <figure>
-    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}" class="rounded-sm">
+    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}" class="rounded-xs">
     {{ with $.Inner }}
       <figcaption>
         {{ . | markdownify }}

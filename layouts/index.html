@@ -6,7 +6,7 @@
         {{ range first 1 (where .RegularPages "Params.featured" "eq" true) }}
           {{/* BEGIN blog post summary */}}
           <div class="flex flex-col gap-8">
-            <div class="rounded-sm overflow-hidden">
+            <div class="rounded-xs overflow-hidden">
               {{ .Render "_blog-post-cover" }}
             </div>
             <div class="flex flex-col gap-4">
