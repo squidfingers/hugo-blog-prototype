@@ -1,0 +1,11 @@
+hugoVersion:
+  extended: true
+  max: ""
+  min: "0.147.0"
+
+mounts:
+  - source: assets
+    target: assets
+  - disableWatch: true
+    source: hugo_stats.json
+    target: assets/notwatching/hugo_stats.json

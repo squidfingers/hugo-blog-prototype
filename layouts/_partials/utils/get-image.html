@@ -1,0 +1,84 @@
+{{/*
+Get the `src` of an image, failing back to a default image if the image src is not
+set in the frontmatter params.
+
+@param {Page} [page]
+@param {String} [src] Path of page resource or absolute URL to image
+@param {String} [default] Default image(s) to use if `src` is empty
+
+Parameters that pass through to `process-image`:
+
+@param {int} [width]
+@param {int} [height]
+@param {string} [process]
+@param {bool} [upscale]
+
+@returns image `src`
+
+@example
+{{ partial "utils/get-image.html" (dict
+  "page" .
+  "src" .Params.thumbnail
+  "default" "thumbnail.*, cover.*"
+) }}
+
+*/}}
+
+{{ $page := .page }}
+{{ $src := .src }}
+{{ $default := split .default "," }}
+
+{{ $width := .width }}
+{{ $height := .height }}
+{{ $process := .process }}
+{{ $upscale := .upscale }}
+
+{{ $res := false }}
+
+{{/* Try to find a page resource, falling back to the default */}}
+{{ if not (or (hasPrefix $src "/") (hasPrefix $src "http")) }}
+  {{ if $src }}
+    {{ $path := strings.TrimPrefix "./" $src }}
+    {{ with or ($page.Resources.GetMatch $path) (resources.GetMatch $path) }}
+      {{ if eq .ResourceType "image" }}
+        {{ $res = . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+  {{ if and $default (not $res) }}
+    {{ range $default }}
+      {{ $d := trim . " " }}
+      {{ if or (hasPrefix $d "/") (hasPrefix $d "http") }}
+        {{ $src =  $d }}
+        {{ break }}
+      {{ else }}
+        {{ $p := strings.TrimPrefix "./" $d }}
+        {{ with or ($page.Resources.GetMatch $p) (resources.GetMatch $p) }}
+          {{ if eq .ResourceType "image" }}
+            {{ $res = . }}
+            {{ break }}
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Process resource if needed */}}
+{{ if $res }}
+  {{ if $process }}
+    {{ with partial "utils/process-image.html" (dict
+      "res" $res
+      "width" $width
+      "height" $height
+      "process" $process
+      "upscale" $upscale
+    )}}
+      {{ $src = .RelPermalink }}
+    {{ end }}
+  {{ else }}
+    {{ $src = $res.RelPermalink }}
+  {{ end }}
+{{ end }}
+
+{{ return $src }}

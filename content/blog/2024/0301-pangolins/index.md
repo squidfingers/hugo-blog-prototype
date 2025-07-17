@@ -24,8 +24,7 @@ reported. [^1]
 [^1]:
     https://www.nytimes.com/2023/09/25/science/pangolins-new-species-scales.html
 
-{{< blog-img pangolin.jpg >}}A Philippine pangolin pup and its
-mother{{< /blog-img >}}
+![A Philippine pangolin pup and its mother](pangolin.jpg)
 
 ## Description
 

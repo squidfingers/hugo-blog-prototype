@@ -1,3 +1,8 @@
+{{ with resources.Match "fonts/*.woff2" }}
+  {{ range . }}
+    {{ .Publish }}
+  {{ end }}
+{{ end }}
 {{ with resources.Get "css/main.css" }}
   {{ $opts := dict "minify" (not hugo.IsDevelopment) }}
   {{ with . | css.TailwindCSS $opts }}

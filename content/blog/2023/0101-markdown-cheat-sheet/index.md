@@ -43,8 +43,7 @@ _Emphasis_, aka _italics_, with asterisks or underscores.
 
 ---
 
-{{< blog-img image.jpg >}}Virginia opossum, _Didelphis virginiana_, (mother with
-nine young){{< /blog-img >}}
+![Virginia opossum, _Didelphis virginiana_, (mother with nine young)](image.jpg)
 
 ## Lists
 

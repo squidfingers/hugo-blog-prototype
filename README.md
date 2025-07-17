@@ -6,38 +6,49 @@ npm run dev
 
 ## Blog post thumbnail and cover images
 
-Thumbnail and cover images for a blog post can be defined as frontmatter params.
-These images will be processed to the appropriate size, so the same source image
-can be use for both images. For example:
+To associate a cover, thumbnail, or feature image to a blog post, you do not
+have to specify them in the frontmatter. You can simply name them `cover`,
+`thumbnail`, or `feature`, place them in the page bundle, and they will
+automattically be used. The images will be processed to the appropriate size.
+For example:
+
+```text
+blog/
+└── 2024/
+    └── 0102-my-blog-post
+        ├── cover.jpg
+        ├── index.md
+        └── thumbnail.jpg
+```
+
+If a thumbnail image is not present in the page bundle, then the cover image
+will be used, and the image will be cropped into a square.
+
+If the blog post is featured on the home page, and the feature image is not
+present in the page bundle, then the cover image will be used.
+
+If you need to name your images another way, you can reference the image names
+in the frontmatter:
 
 ```yaml
 params:
-  thumbnail: image.jpg
-  cover: image.jpg
+  cover: hero.png
+  feature: hero-cropped.png
+  thumbnail: tn.png
 ```
 
-If `.Params.thumbnail` or `.Params.cover` are not set, Hugo will look for a page
-resource named `thumbnail.*` or `cover.*`.
-
-If page resources do not exist for the thumbnail and cover images, then they
-will fallback to default images located `/static/blog/` directory.
+If `.Params.cover` or `.Params.thumbnail` are not set, and `cover.*` and
+`thumbnail.*` images are not present in the page bundle, then default images
+located in the `/assets/blog/` directory will be used.
 
 ## Blog post content images
 
-If you need to insert an image into the content of a blog post, you can use the
-`blog-img` shortcode. This shortcode will process the image to the appropriate
-size. For example:
-
-Without caption
+To show an image in the content of a blog post, just use Markdown syntax. The
+image will be scaled down to the appropriate size if it is too large. For
+example:
 
 ```markdown
-{{< blog-img image.jpg />}}
-```
-
-With caption
-
-```markdown
-{{< blog-img image.jpg >}}Image **caption**{{< /blog-img >}}
+![My image](image.jpg)
 ```
 
 ## Author images

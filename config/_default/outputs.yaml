@@ -1,0 +1,7 @@
+# Turn off RSS by default; an individual section can choose to enable it
+page:
+  - HTML
+home:
+  - HTML
+section:
+  - HTML

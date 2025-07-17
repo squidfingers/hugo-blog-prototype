@@ -7,7 +7,6 @@ keywords:
   - "red pandas"
 params:
   author: travis
-  thumbnail: cover.jpg
 images: [thumbnail.jpg] # Open Graph image
 ---
 
@@ -21,7 +20,7 @@ with a 28–48.5 cm (11.0–19.1 in) tail, and it weighs between 3.2 and 15 kg (
 and 33.1 lb). It is well adapted to climbing due to its flexible joints and
 curved semi-retractile claws.
 
-{{< blog-img cover.jpg >}}Red panda sitting on a tree branch{{< /blog-img >}}
+![Red panda sitting on a tree branch](cover.jpg)
 
 ## Etymology
 

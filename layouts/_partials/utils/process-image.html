@@ -1,11 +1,11 @@
 {{/*
+Image processing for a page resource or global resource
 
-@param {Collection} res - .Resources or resources
-@param {String} pattern
-@param {Int} width
-@param {Int} height
-@param {String} process - Process specification **without** `dimensions`
-@param {Boolean} upscale - Defaults to false
+@param {Resource} [res]
+@param {Int} [width]
+@param {Int} [height]
+@param {String} [process] Process specification **without** `dimensions`
+@param {Boolean} [upscale] Defaults to false
 
 The `upscale` param only has an effect for `fill` and `resize` processes. `fit`
 only downscales, and `crop` does not resize, so `upscale` will
@@ -14,45 +14,42 @@ not have any effect for these two processes.
 @returns {Resource}
 
 @example
-
-# Process page resource
-
-{{ with partial "utils/process-image" (dict
-  "res" .Resources
-  "pattern" "image.webp"
-  "width" 1600
-  "height" 1600
-  "process" "fit jpg q80 lanczos"
-)}}
-  <img src="{{ .RelPermalink }}" alt="{{ .Name }}">
+{{ with .Resources.Get "image.jpg" }}
+  {{ with partial "utils/process-image" (dict
+    "res" .
+    "width" 1600
+    "height" 1600
+    "process" "fit jpg q80 lanczos"
+  )}}
+    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
+  {{ end }}
 {{ end }}
 
-# Process global resource
-
-{{ with partial "utils/process-image" (dict
-  "res" resources
-  "pattern" (printf "%s%s.*" "authors/" .avatar)
-  "width" 128
-  "height" 128
-  "process" "fill"
-  "upscale" true
-)}}
-  <img src="{{ .RelPermalink }}" alt="{{ .Name }}">
+@example
+{{ with .Resources.Get "image.jpg" }}
+  {{ with partial "process-image.html" (dict
+    "res" .
+    "width" 128
+    "height" 128
+    "process" "fill"
+    "upscale" true
+  )}}
+    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}">
+  {{ end }}
 {{ end }}
 
 */}}
 
 {{ $res := .res }}
-{{ $pattern := .pattern }}
 {{ $width := .width }}
 {{ $height := .height }}
 {{ $process := .process }}
 {{ $upscale := default false .upscale }}
-{{ $r := "" }}
+
 {{ $p := "" }}
-{{ with $res.GetMatch .pattern }}
+
+{{ with $res }}
   {{ if eq .ResourceType "image" }}
-    {{ $r = . }}
     {{ if not (eq .MediaType.SubType "svg") }}
       {{ if and $width $height }}
         {{ if or (eq $upscale true) (gt .Width $width) (gt .Height $height) }}
@@ -70,9 +67,10 @@ not have any effect for these two processes.
         {{ $p := $process }}
       {{ end }}
       {{ if $p }}
-        {{ $r = .Process $p }}
+        {{ $res = .Process $p }}
       {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}
-{{ return $r }}
+
+{{ return $res }}

@@ -1,13 +1,12 @@
 {{ if .Params.avatar }}
-  {{ with partial "utils/process-image" (dict
-    "res" .Resources
-    "pattern" .Params.avatar
+  {{ with partial "utils/get-image.html" (dict
+    "page" .
+    "src" .Params.avatar
+    "default" "avatar.*, authors/avatar.svg"
     "width" 128
     "height" 128
     "process" "fill jpg q80 lanczos"
-  ) }}
-    <img src="{{ .RelPermalink }}" alt="{{ path.BaseName .Name | humanize }}" class="rounded-full size-20">
-  {{ else }}
-    <img src="/authors/avatar.svg" alt="" class="rounded-full size-20">
+  )}}
+    <img src="{{ . }}" alt="Avatar" class="rounded-full size-20">
   {{ end }}
 {{ end }}
