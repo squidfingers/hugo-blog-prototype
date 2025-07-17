@@ -31,7 +31,7 @@ window.addEventListener(
             this.field("title");
             this.field("description");
             this.field("keywords", {boost: 10});
-             this.field("tags");
+            this.field("tags");
             this.field("content");
             for (let doc of request.response) {
               this.add(doc);
