@@ -1,14 +1,13 @@
-languageCode: "en-us"
 title: "Blog prototype"
 
 menu:
   main:
-  - name: Home
-    pageRef: /
-    weight: 1
-  - name: Blog
-    pageRef: /blog/
-    weight: 2
+    - name: Home
+      pageRef: /
+      weight: 1
+    - name: Blog
+      pageRef: /blog/
+      weight: 2
 
 params:
   # Open Graph defaults
@@ -18,10 +17,10 @@ params:
 # Shorten page summaries
 summaryLength: 30
 
-# Set number of pages shown on a pager 
+# Set number of pages shown on a pager
 pagination:
   pagerSize: 3
-  
+
 # Set URL structure for blog post
 permalinks:
   page:
@@ -33,20 +32,20 @@ related:
   # `includeNewer: false`: Related content is only shown if it's older than the current page
   includeNewer: true
   indices:
-  - applyFilter: false
-    cardinalityThreshold: 0
-    name: keywords
-    pattern: ""
-    toLower: false
-    type: basic
-    weight: 100
-  - applyFilter: false
-    cardinalityThreshold: 0
-    name: tags
-    pattern: ""
-    toLower: false
-    type: basic
-    weight: 80
+    - applyFilter: false
+      cardinalityThreshold: 0
+      name: keywords
+      pattern: ""
+      toLower: false
+      type: basic
+      weight: 100
+    - applyFilter: false
+      cardinalityThreshold: 0
+      name: tags
+      pattern: ""
+      toLower: false
+      type: basic
+      weight: 80
   threshold: 80
   toLower: false
 
@@ -63,23 +62,19 @@ outputs:
   section:
     - HTML
 
-# Get Tailwind 3 to build nicely with Hugo
-# https://github.com/bep/hugo-starter-tailwind-basic/tree/master
-module:
-  mounts:
-  - source: assets
-    target: assets
-  - source: "hugo_stats.json"
-    target: "assets/watching/hugo_stats.json"
+# Get Tailwind 4 to build nicely with Hugo
 build:
   buildStats:
     enable: true
   cachebusters:
-  - source: assets/watching/hugo_stats\.json
-    target: main\.css
-  - source: (postcss|tailwind)\.config\.js
-    target: css
-  - source: assets/.*\.(js|ts|jsx|tsx)
-    target: js
-  - source: assets/.*\.(.*)$
-    target: $1
+    - source: assets/notwatching/hugo_stats\.json
+      target: css
+    - source: (postcss|tailwind)\.config\.js
+      target: css
+module:
+  mounts:
+    - source: assets
+      target: assets
+    - disableWatch: true
+      source: hugo_stats.json
+      target: assets/notwatching/hugo_stats.json
