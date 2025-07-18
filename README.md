@@ -25,7 +25,7 @@ For example:
 ```text
 blog/
 └── 2024/
-    └── 0102-my-blog-post
+    └── 0102-my-blog-post/
         ├── cover.jpg
         ├── index.md
         └── thumbnail.jpg
