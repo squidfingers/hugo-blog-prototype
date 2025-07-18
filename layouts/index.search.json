@@ -1,8 +1,6 @@
-{{- $s := newScratch }}
-{{- $s.Add "search" slice }}
+{{- $s := slice }}
 {{- range where site.RegularPages "Section" "blog" }}
-  {{- $s.Add
-    "search"
+  {{- $s = $s | append
     (dict
       "uri"         .RelPermalink
       "date"        (.Date.Format "Jan 2, 2006")
@@ -15,4 +13,4 @@
     )
   }}
 {{- end }}
-{{- $s.Get "search" | jsonify }}
+{{- $s | jsonify }}
