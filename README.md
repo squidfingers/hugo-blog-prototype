@@ -1,3 +1,5 @@
+# Blog prototype using Hugo and Tailwind 4
+
 ## Demo
 
 https://hugo-tailwind-blog.pages.dev/

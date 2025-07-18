@@ -77,6 +77,7 @@ window.addEventListener(
         node.querySelector(".search-results-entry__link").href = doc.uri;
         node.querySelector(".search-results-entry__title").textContent = doc.linkTitle;
         node.querySelector(".search-results-entry__title").href = doc.uri;
+        node.querySelector(".search-results-entry__date").textContent = doc.date;
         node.querySelector(".search-results-entry__summary").textContent = truncateWords(doc.content, 30);
         target.appendChild(node);
       }

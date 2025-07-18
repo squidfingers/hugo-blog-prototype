@@ -5,6 +5,7 @@
     "search"
     (dict
       "uri"         .RelPermalink
+      "date"        (.Date.Format "Jan 2, 2006")
       "title"       .Title
       "linkTitle"   .LinkTitle
       "description" .Description
