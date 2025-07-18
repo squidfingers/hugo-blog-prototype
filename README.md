@@ -1,3 +1,7 @@
+## Demo
+
+https://hugo-tailwind-blog.pages.dev/
+
 ## Local development
 
 ```bash
