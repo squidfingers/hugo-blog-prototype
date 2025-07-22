@@ -1,5 +1,8 @@
 {{- $s := slice }}
 {{- range where site.RegularPages "Section" "blog" }}
+  {{- $content := .Plain | htmlUnescape }}
+  {{- $content = replaceRE "[\n\r\t]+" " " $content }}
+  {{- $content = trim $content " " }}
   {{- $s = $s | append
     (dict
       "uri"         .RelPermalink
@@ -9,7 +12,7 @@
       "description" .Description
       "keywords"    .Keywords
       "tags"        (.Params.tags)
-      "content"     (.Plain | htmlUnescape)
+      "content"     $content
     )
   }}
 {{- end }}
